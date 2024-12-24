@@ -1,0 +1,13 @@
+plt.figure(figsize=(14, 8))
+
+for category, preds in predictions.items():
+    plt.plot(future_years['work_year'], preds, marker='o', label=category)
+    plt.fill_between(future_years['work_year'], min(preds), max(preds), alpha=0.2)
+
+plt.title("Predicted Job Counts for All Categories (2025-2030)", fontsize=16)
+plt.xlabel("Year", fontsize=12)
+plt.ylabel("Job Count", fontsize=12)
+plt.legend(title="Job Category", bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.grid(True, which='both', linestyle='--', linewidth=0.5)
+plt.tight_layout()
+plt.show()
