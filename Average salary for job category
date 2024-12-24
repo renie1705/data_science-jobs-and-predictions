@@ -1,0 +1,7 @@
+avg_salary_by_category = data.groupby("job_category")["salary_in_usd"].mean().sort_values(ascending=False)
+plt.figure(figsize=(10, 6))
+sns.barplot(x=avg_salary_by_category, y=avg_salary_by_category.index, palette="viridis")
+plt.title("Average Salary by Job Category", fontsize=16, fontweight="bold")
+plt.xlabel("Average Salary (USD)", fontsize=12)
+plt.ylabel("Job Category", fontsize=12)
+plt.show()
