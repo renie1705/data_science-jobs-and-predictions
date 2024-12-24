@@ -1,0 +1,6 @@
+plt.figure(figsize=(12, 6))
+sns.boxplot(data=data, x="experience_level", y="salary_in_usd", palette="coolwarm")
+plt.title("Salary Distribution by Experience Level", fontsize=16, fontweight="bold")
+plt.xlabel("Experience Level", fontsize=12)
+plt.ylabel("Salary in USD", fontsize=12)
+plt.show()
