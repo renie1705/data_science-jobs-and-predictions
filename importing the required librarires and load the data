@@ -1,0 +1,6 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the data
+data = pd.read_csv("C:\\Users\\ASUS\\Downloads\\archive(10)\\data_science_job.csv")
