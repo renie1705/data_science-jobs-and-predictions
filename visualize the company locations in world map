@@ -1,0 +1,49 @@
+import matplotlib.pyplot as plt
+from mpl_toolkits.basemap import Basemap
+from geopy.geocoders import Nominatim
+import pandas as pd # Import pandas
+
+# Initialize geolocator
+geolocator = Nominatim(user_agent="geoapi")
+
+# Load the data  # Load data here to ensure it's available
+data = pd.read_csv("C:\\Users\\ASUS\\Downloads\\archive(10)\\data_science_job.csv")
+
+# Extract unique company locations
+company_locations = data['company_location'].unique()
+
+# Initialize lists to store latitude and longitude
+latitudes = []
+longitudes = []
+location_names = []
+
+# Get latitude and longitude for each company location
+for location in company_locations:
+    try:
+        geo_data = geolocator.geocode(location)
+        if geo_data:
+            latitudes.append(geo_data.latitude)
+            longitudes.append(geo_data.longitude)
+            location_names.append(location)
+    except Exception as e:
+        print(f"Error geocoding {location}: {e}")
+
+# Plotting the map
+plt.figure(figsize=(12, 8))
+m = Basemap(projection='merc', resolution='l',
+            llcrnrlat=-60, urcrnrlat=80,
+            llcrnrlon=-180, urcrnrlon=180)
+
+m.drawcoastlines()
+m.drawcountries()
+m.fillcontinents(color='lightgray', lake_color='aqua')
+m.drawmapboundary(fill_color='aqua')
+
+# Plot each company location
+for lat, lon, name in zip(latitudes, longitudes, location_names):
+    x, y = m(lon, lat)
+    m.plot(x, y, 'bo', markersize=10)
+    plt.text(x, y, name, fontsize=9)
+
+plt.title("Company Locations")
+plt.show()
