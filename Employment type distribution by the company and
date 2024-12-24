@@ -1,0 +1,7 @@
+plt.figure(figsize=(12, 6))
+sns.countplot(data=data, x="employment_type", hue="company_size", palette="pastel")
+plt.title("Employment Type Distribution by Company Size", fontsize=16, fontweight="bold")
+plt.xlabel("Employment Type", fontsize=12)
+plt.ylabel("Count", fontsize=12)
+plt.legend(title="Company Size")
+plt.show()
